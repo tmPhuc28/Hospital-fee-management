@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Quản lý viện phí</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <main>
+        <div class="big-wrapper light">
+            <header>
+
+                <div class="container">
+                    <div class="logo">
+                        <a asp-controller="Home" asp-action="Index"><h3>QUẢN LÝ VIỆN PHÍ</h3></a>
+                    </div>
+
+                    <div class="links">
+                        <ul>
+                            <li><a class="btn" id="clickHide" asp-controller="Login" asp-action="Login">Đăng nhập</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="overlay"></div>
+
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </header>
+            <div class="showcase-area">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
+                <div class="bottom-area">
+                    <div class="container">
+                        <button class="toggle-btn">
+                            <i class="far fa-moon"></i>
+                            <i class="far fa-sun"></i>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="~/js/app.js"></script>
+</body>
+</html>

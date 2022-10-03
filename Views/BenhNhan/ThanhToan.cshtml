@@ -1,0 +1,126 @@
+﻿@model IEnumerable<QuanLyVienPhi.Models.VReceiptsDetails>;
+@{
+    ViewData["Title"] = "Bệnh nhân";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+        else if (ViewBag.Session == "KT".ToLower().Trim())
+        {
+            Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+        }
+}
+
+<!-- [ breadcrumb ] start -->
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("BienLai")">Biên lai</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("BienLai")">Biên lai</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- [ Breadcrumbs & Pagination ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Biên lai</h5>
+            </div>
+            <div class="card-body">
+                <nav aria-label="Page navigation example">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <hr>
+                                <h1 style="margin-left: 18.75%">Biên lai bệnh nhân</h1>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-9">
+                                        <dl class="row">
+                                            <dt class="col-sm-3">Mã bệnh nhân</dt>
+                                            <dd class="col-sm-9">: @ViewBag.MABN</dd>
+
+                                            <dt class="col-sm-3">Họ tên</dt>
+                                            <dd class="col-sm-9">: @ViewBag.HoTen</dd>
+
+                                            <dt class="col-sm-3">Số CMND</dt>
+                                            <dd class="col-sm-9">: @ViewBag.CMND</dd>
+
+                                            <dt class="col-sm-3">Điện thoại</dt>
+                                            <dd class="col-sm-9">: @ViewBag.SDT</dd>
+
+                                            <dt class="col-sm-3">Giới tính</dt>
+                                            <dd class="col-sm-9">: @ViewBag.GioiTinh</dd>
+
+                                            <dt class="col-sm-3">Địa chỉ</dt>
+                                            <dd class="col-sm-9">: @ViewBag.DiaChi</dd>
+
+                                            <dt class="col-sm-3">Số biên lai</dt>
+                                            <dd class="col-sm-9">: @ViewBag.SoBL</dd>
+
+                                            <dt class="col-sm-3">Ngày khám</dt>
+                                            <dd class="col-sm-9">: @String.Format("{0:dd/MM/yyyy}", ViewBag.NgayKham)</dd>
+
+                                            <dt class="col-sm-3">Ngày thanh toán</dt>
+                                            <dd class="col-sm-9">: @String.Format("{0:dd/MM/yyyy}", ViewBag.NgayThanhToan)</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped content-table colortoptabletwo">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Tên chi phí</th>
+                                                    <th>Số tiền</th>
+                                                    <th>Chức năng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr class="Search">
+                                                        <td></td>
+                                                        <td>@Html.DisplayFor(m => item._sTenCP)</td>
+                                                        <td>@String.Format("{0:0,0}", item._fSoTien)</td>
+                                                        <td>
+                                                            <a href="@Url.Action("SuaChiTietBienlai", "BenhNhan", new { id = item._nKhoanCP, idBL = item._nSoBienLai})"
+                                                               class="btn btn-info feather icon-file-text"></a>
+                                                            <a href="@Url.Action("XoaChiTietBienLai", "BenhNhan", new { id = item._nSoBienLai, idCP = item._nKhoanCP})"
+                                                               class="btn btn-danger feather icon-trash-2"></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                <tr class="active-row">
+                                                    <td colspan="2">Tổng tiền</td>
+                                                    <td style="font-weight: bold">: @String.Format("{0:0,0}", @ViewBag.TongTien) VND</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- [ Breadcrumbs & Pagination ] end -->
+</div>

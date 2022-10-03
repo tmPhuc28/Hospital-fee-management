@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\fonts\datta\fonts\pct.svg" />
+    <None Include="wwwroot\fonts\feather\fonts\feather.svg" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\fonts\fontawesome\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Images\Hospital_icon-icons.com_74918 %282%29.png" />
+    <None Include="wwwroot\Images\medical-12_icon-icons.com_73944.png" />
+    <None Include="wwwroot\Images\plus.png" />
+    <None Include="wwwroot\js\app.js" />
+    <None Include="wwwroot\js\pages\chart-morris-custom.js" />
+    <None Include="wwwroot\js\pages\google-maps.js" />
+    <None Include="wwwroot\js\mpcoded.min.js" />
+    <None Include="wwwroot\js\vendor-all.min.js" />
+    <None Include="wwwroot\plugins\amchart\js\amcharts.js" />
+    <None Include="wwwroot\plugins\amchart\js\ammap.min.js" />
+    <None Include="wwwroot\plugins\amchart\js\gauge.js" />
+    <None Include="wwwroot\plugins\amchart\js\images\dragIconRoundBig.svg" />
+    <None Include="wwwroot\plugins\amchart\js\images\lens.svg" />
+    <None Include="wwwroot\plugins\amchart\js\light.js" />
+    <None Include="wwwroot\plugins\amchart\js\pie.min.js" />
+    <None Include="wwwroot\plugins\amchart\js\radar.js" />
+    <None Include="wwwroot\plugins\amchart\js\serial.js" />
+    <None Include="wwwroot\plugins\amchart\js\usaLow.js" />
+    <None Include="wwwroot\plugins\amchart\js\worldLow.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\popover.js" />
+    <None Include="wwwroot\plugins\chart-morris\js\morris.min.js" />
+    <None Include="wwwroot\plugins\chart-morris\js\raphael.min.js" />
+    <None Include="wwwroot\plugins\google-maps\js\gmaps.js" />
+    <None Include="wwwroot\plugins\jquery-scrollbar\js\jquery.scrollbar.min.js" />
+    <None Include="wwwroot\plugins\jquery-ui\js\jquery-ui.js" />
+    <None Include="wwwroot\plugins\jquery\js\jquery.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+</Project>

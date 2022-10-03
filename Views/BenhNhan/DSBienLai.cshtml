@@ -1,0 +1,139 @@
+﻿@model IEnumerable<QuanLyVienPhi.Models.Receipts>;
+@using QuanLyVienPhi.Models; 
+@{
+    ViewData["Title"] = "Biên lai";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.Session == "KT".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+    }
+    PageList pager = new PageList();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+
+<!-- [ breadcrumb ] start -->
+<!-- [ breadcrumb ] start -->
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("DSBienLai")">Danh sách biên lai</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("DSBienLai")">Danh sách biên lai</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- [ Breadcrumbs & Pagination ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Biên lai</h5>
+            </div>
+            <div class="card-body">
+                <nav aria-label="Page navigation example">
+                    <div class="card-block table-border-style">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!--Tim kiem---------------------------------------------------------------------------------------------------------------------------->
+                                <div class="input-group mb-3">
+                                    <input type="search" id="Search" class="form-control" placeholder="Tìm kiếm...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success feather icon-search" type="button">    Tìm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped content-table colortoptabletwo">
+                                <thead>
+                                    <tr>
+                                        <th>Mã bệnh nhân</th>
+                                        <th>Số biên lai</th>
+                                        <th>Họ tên</th>
+                                        <th>Ngày thanh toán</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Thanh toán</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="Search">
+                                            <td>@Html.DisplayFor(m => item._sMaBN)</td>
+                                            <td>@Html.DisplayFor(m => item._nSoBienLai)</td>
+                                            <td>@Html.DisplayFor(m => item._sHoTen)</td>
+                                            <td>@String.Format("{0:dd/MM/yyyy}", item._dNgayThanhToan)</td>
+                                            <td>@String.Format("{0:0,0}", item._fTongTien)</td>
+                                            <td>
+                                                <a href="@Url.Action("ThanhToan", "BenhNhan", new { id = item._nSoBienLai, MaBN = item._sMaBN})"
+                                                   class="btn btn-info feather icon-file-text"></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!--Phan trang-->
+                            <nav aria-label="Page navigation example">
+                                @if (pager.TotalPages > 0)
+                                {
+                                    <ul class="pagination">
+                                        @if (pager.CurrentPage > 1)
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" href="@Url.Action("DSBienLai","BenhNhan", new {page =1})">Frist</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="@Url.Action("BenhNhan", "DSBienLai", new {page =pager.CurrentPage - 1})">Previous</a>
+                                            </li>
+                                        }
+
+                                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                                        {
+                                            <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                                                <a class="page-link" href="@Url.Action( "DSBienLai","BenhNhan", new { page = @pge})">@pge</a>
+                                            </li>
+
+                                        }
+
+                                        @if (pager.CurrentPage < pager.TotalPages)
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" href="@Url.Action( "DSBienLai","BenhNhan", new {page = pager.CurrentPage + 1 })">Next</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="@Url.Action( "DSBienLai","BenhNhan", new {page = pager.TotalPages })">Last</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </nav>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- [ Breadcrumbs & Pagination ] end -->
+</div>

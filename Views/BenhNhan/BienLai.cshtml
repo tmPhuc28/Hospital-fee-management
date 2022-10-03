@@ -1,0 +1,76 @@
+﻿@model QuanLyVienPhi.Models.Receipts;
+@{
+    ViewData["Title"] = "Biên lai";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+        else if (ViewBag.Session == "KT".ToLower().Trim())
+        {
+            Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+        }
+}
+
+
+
+<!-- [ breadcrumb ] start -->
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("BenhNhan")">Bệnh nhân</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("BienLai")">Biên lai</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- [ Breadcrumbs & Pagination ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Biên lai</h5>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("BienLai", "BenhNhan", FormMethod.Post))
+                {
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="_nSoBienLai" class="control-label">Số biên lai</label>
+                        <input asp-for="_nSoBienLai" class="form-control" name="_nSoBienLai" />
+                        <span asp-validation-for="_nSoBienLai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="_sMaBN" class="control-label">Mã bệnh nhân</label>
+                        <input asp-for="_sMaBN" class="form-control" name="_sMaBN" />
+                        <span asp-validation-for="_sMaBN" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="_dNgayThanhToan" class="control-label">Ngày thanh toán</label>
+                        <input asp-for="_dNgayThanhToan" class="form-control" type="date" />
+                        <span asp-validation-for="_dNgayThanhToan" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Chi phí khám</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="_nKhoanCP"
+                                asp-items="@(new SelectList(ViewBag.InfoExpenses,"Value","Text"))"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Số tiền</label>
+                        <input type="text" class="form-control" name="_fSoTien">
+                    </div>
+                    <input type="submit" value="Lưu" class="btn btn-primary feather icon-save">
+                    <a asp-controller="BenhNhan" asp-action="BenhNhan" class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- [ Breadcrumbs & Pagination ] end -->
+</div>

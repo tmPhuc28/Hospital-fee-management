@@ -1,0 +1,68 @@
+﻿@model QuanLyVienPhi.Models.AccountGroup;
+@{
+    ViewData["Title"] = "Sửa loại tài khoản";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+}
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="@Url.Action("KeToan")"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("LoaiTaiKhoan")">Loại tài khoản</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("SuaLoaiTaiKhoan")">Sửa loại tài khoản</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Sửa loại tài khoản</h5>
+        </div>
+        <div class="card-body">
+            <h5>Tài khoản</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    @using (Html.BeginForm("SuaLoaiTaiKhoan", "TaiKhoan", FormMethod.Post))
+                    {
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="_sMaLoai" class="control-label">Mã loại</label>
+                            <input name="_sMaLoai" asp-for="_sMaLoai" class="form-control" />
+                            <span asp-validation-for="_sMaLoai" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sTenLoai" class="control-label">Tên loại</label>
+                            <input asp-for="_sTenLoai" class="form-control" name="_sTenLoai" />
+                            <span asp-validation-for="_sTenLoai" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Lưu" class="btn btn-primary" />
+                        <a asp-controller="TaiKhoan" asp-action="LoaiTaiKhoan" class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <img src="~/Images/medical-12_icon-icons.com_73944.png" alt="" style="width:50%; margin-left:130px;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

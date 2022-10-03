@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="center">
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <h1>Đăng nhập</h1>
+        <h4> @TempData["mgs"]</h4>
+        <div class="txt_field">
+            <input type="text" required name="_sTaiKhoan" />
+            <label>Tên tài khoản</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" required name="_sMatKhau" />
+            <label>Mật khẩu</label>
+        </div>
+        <div class="select-box">
+            <select name="_sMaLoai" asp-items="@(new SelectList(ViewBag.InfoAccountGroup,"Value", "Text"))"></select>
+        </div>
+        <input type="submit" value="Login" />
+    }
+</div>
+

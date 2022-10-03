@@ -1,0 +1,107 @@
+﻿@model IEnumerable<QuanLyVienPhi.Models.AccountGroup>;
+@{
+    ViewData["Title"] = "Loại tài khoản";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    PageList pager = new PageList();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="@Url.Action("KeToan")"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("LoaiTaiKhoan")">Tài khoản</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("LoaiTaiKhoan")">Loại tài khoản</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- [ table ] start -->
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Loại tài khoản</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div style="text-align:right;">
+                <a asp-controller="TaiKhoan" asp-action="ThemLoaiTaiKhoan" class="btn btn-primary feather icon-plus" style="text-align:right;">     Thêm</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped content-table colortoptable">
+                    <thead>
+                        <tr>
+                            <th>Mã loại</th>
+                            <th>Tên nhóm tài khoản</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item._sMaLoai)</td>
+                                <td>@Html.DisplayFor(m => item._sTenLoai)</td>
+                                <td>
+                                    <a href="@Url.Action("SuaLoaiTaiKhoan", "TaiKhoan", new { id = item._sMaLoai})" class="btn btn-success feather icon-edit"></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <!--Phan trang-->
+                <nav aria-label="Page navigation example">
+                    @if (pager.TotalPages > 0)
+                    {
+                        <ul class="pagination">
+                            @if (pager.CurrentPage > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("TaiKhoan", "LoaiTaiKhoan", new {page =1})">Frist</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("TaiKhoan", "LoaiTaiKhoan", new {page =pager.CurrentPage - 1})">Previous</a>
+                                </li>
+                            }
+
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
+                                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                                    <a class="page-link" href="@Url.Action("TaiKhoan", "LoaiTaiKhoan", new { page = @pge})">@pge</a>
+                                </li>
+
+                            }
+
+                            @if (pager.CurrentPage < pager.TotalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("TaiKhoan", "LoaiTaiKhoan", new {page = pager.CurrentPage + 1 })">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("TaiKhoan", "LoaiTaiKhoan", new {page = pager.TotalPages })">Last</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ table ] end -->

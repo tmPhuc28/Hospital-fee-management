@@ -1,0 +1,81 @@
+﻿@model QuanLyVienPhi.Models.Account
+@{
+    ViewData["Title"] = "Sửa tài khoản";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+}
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="@Url.Action("KeToan")"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("DSTaiKhoan")">Danh sách tài khoản</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("SuaTaiKhoan")">Sửa tài khoản</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Sửa tài khoản</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @using (Html.BeginForm("SuaTaiKhoan", "TaiKhoan", FormMethod.Post))
+                    {
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="_sTaiKhoan" class="control-label">Tài khoản</label>
+                            <input asp-for="_sTaiKhoan" class="form-control" name="_sTaiKhoan" />
+                            <span asp-validation-for="_sTaiKhoan" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sMatKhau" class="control-label">Mật khẩu</label>
+                            <input type="password" asp-for="_sMatKhau" class="form-control" name="_sMatKhau" />
+                            <span asp-validation-for="_sMatKhau" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sMaLoai">Quyền</label>
+                            <input asp-for="_sMaLoai" class="form-control" name="_sMaLoai" />
+                            <span asp-validation-for="_sMaLoai" class="text-danger"></span>
+                            @*<select class="form-control" id="exampleFormControlSelect1" name="_sMaLoai"
+                                asp-items="@(new SelectList(ViewBag.InfoAccGr,"Value","Text"))"></select>*@
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sMANV">Nhân viên</label>
+                            <input asp-for="_sMANV" class="form-control" name="_sMANV" />
+                            <span asp-validation-for="_sMANV" class="text-danger"></span>
+                            @*<label for="exampleFormControlSelect1">Nhân viên</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="_sMANV"
+                                        asp-items="@(new SelectList(ViewBag.InfoEmp,"Value","Text"))"></select>*@
+                        </div>
+
+                        <input type="submit" value="Lưu" class="btn btn-primary feather icon-save" />
+                        <a asp-controller="TaiKhoan" asp-action="DSTaiKhoan"
+                           class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+
+                    }
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <img src="~/Images/test_102328.png" alt="" style="width:50%; margin-left:130px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

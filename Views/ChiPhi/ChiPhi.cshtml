@@ -1,0 +1,109 @@
+﻿@model IEnumerable<QuanLyVienPhi.Models.Expenses>;
+@{
+    ViewData["Title"] = "Chi phí khám bệnh";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.Session == "KT".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+    }
+    PageList pager = new PageList();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="@Url.Action("KeToan")"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("ChiPhi")">Chi phí</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("ChiPhi")">Chi phí</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ table ] start -->
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Chi phí khám bệnh</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div style="text-align:right;">
+                <a asp-controller="ChiPhi" asp-action="ThemChiPhi" class="btn btn-primary feather icon-plus" style="text-align:right;">     Thêm</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped content-table colortoptable">
+                    <thead>
+                        <tr>
+                            <th>Mã chi phí</th>
+                            <th>Tên chi phí</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="active-row">
+                                <td>@Html.DisplayFor(m => item._nKhoanCP)</td>
+                                <td>@Html.DisplayFor(m => item._sTenCP)</td>
+                                <td>
+                                    <a href="@Url.Action("SuaChiPhi", "ChiPhi", new { id = item._nKhoanCP})" class="btn btn-success feather icon-edit"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--Phan trang-->
+                <nav aria-label="Page navigation example">
+                    @if (pager.TotalPages > 0)
+                    {
+                        <ul class="pagination">
+                            @if (pager.CurrentPage > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("ChiPhi", "ChiPhi", new {page =1})">Frist</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("ChiPhi", "ChiPhi", new {page =pager.CurrentPage - 1})">Previous</a>
+                                </li>
+                            }
+
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
+                                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                                    <a class="page-link" href="@Url.Action("ChiPhi", "ChiPhi", new { page = @pge})">@pge</a>
+                                </li>
+
+                            }
+
+                            @if (pager.CurrentPage < pager.TotalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("ChiPhi", "ChiPhi", new {page = pager.CurrentPage + 1 })">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("ChiPhi", "ChiPhi", new {page = pager.TotalPages })">Last</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ table ] end -->

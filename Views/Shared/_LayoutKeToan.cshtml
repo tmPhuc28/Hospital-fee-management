@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewData["Title"] - Quản lý viện phí</title>
+    <meta name="author" content="CodedThemes" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="#" class="feather icon-plus-circle" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="~/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="~/plugins/animation/css/animate.min.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="~/css/styleAdmin.css">
+    <link rel="stylesheet" href="~/css/TableStyle.css">
+
+    <script src="~/js/jquery.min.js"></script>
+
+    <script src="~/js/JavaScript.js"></script>
+</head>
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a asp-controller="Home" asp-action="KeToan" class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-plus-circle"></i>
+                    </div>
+                    <span class="b-title">Quản lý viện phí</span>
+                </a>
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>KẾ TOÁN</label>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="KeToan" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Home</span></a>
+                    </li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Bệnh nhân</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a asp-controller="BenhNhan" asp-action="BenhNhan" class="">Bệnh nhân</a></li>
+                            <li class=""><a asp-controller="BenhNhan" asp-action="DSBienLai" class="">Danh sách biên lai</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Chi phí</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a asp-controller="ChiPhi" asp-action="ChiPhi" class="">Chi phí khám bệnh</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-menu"></i></span><span class="pcoded-mtext">Bệnh viện</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a asp-controller="BenhVien" asp-action="BacSi" class="">Bác sĩ</a></li>
+                            <li class=""><a asp-controller="BenhVien" asp-action="NhanVien" class="">Nhân viên</a></li>
+                            <li class=""><a asp-controller="BenhVien" asp-action="Khoa" class="">Khoa</a></li>
+                            <li class=""><a asp-controller="BenhVien" asp-action="PhongKham" class="">Phòng khám</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Báo cáo</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="#" class="">Danh sách bác sĩ</a></li>
+                            <li class=""><a href="#" class="">Danh sách nhân viên</a></li>
+                            <li class=""><a href="#" class="">Danh sách chi phí</a></li>
+                            <li class=""><a href="#" class="">Danh sách khoa</a></li>
+                            <li class=""><a href="#" class="">Danh sách phòng khám</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Login" asp-action="Login" class="nav-link "><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Đăng xuất</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
+        <!---------------------------------------------------------------------------------->
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+            <a asp-controller="Home" asp-action="KeToan" class="b-brand">
+                <div class="b-bg">
+                    <i class="feather icon-plus-circle"></i>
+                </div>
+                <span class="b-title">Quản lý viện phí</span>
+            </a>
+        </div>
+        <!-------------------------------------------------------------------------------->
+        <a class="mobile-menu" id="mobile-header" href="javascript:">
+            <i class="feather icon-more-horizontal"></i>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="@Url.Action("KeToan", "Home")"><i class="feather icon-home"></i></a></li>
+                                        @*<li class="breadcrumb-item"><a href="#">Bệnh viện</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Bác sĩ</a></li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="container">
+                                @RenderBody()
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+    <script src="~/js/vendor-all.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/mpcoded.min.js"></script>
+</body>
+</html>

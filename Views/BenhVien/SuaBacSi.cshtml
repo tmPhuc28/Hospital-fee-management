@@ -1,0 +1,102 @@
+﻿@model QuanLyVienPhi.Models.Physician;
+@{
+    ViewData["Title"] = "Sửa bác sĩ";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.Session == "KT".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+    }
+
+}
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("BacSi")">Bác sĩ</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("SuaBacSi")">Sửa bác sĩ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Sửa thông tin bác sĩ</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @using (Html.BeginForm("SuaBacSi", "BenhVien", FormMethod.Post))
+                    {
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="_sMaBS" class="control-label">Mã bác sĩ</label>
+                            <input asp-for="_sMaBS" class="form-control" name="_sMaBS" />
+                            <span asp-validation-for="_sMaBS" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sHoTen" class="control-label">Họ tên</label>
+                            <input asp-for="_sHoTen" class="form-control" name="_sHoTen"/>
+                            <span asp-validation-for="_sHoTen" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_dNgaySinh" class="control-label">Ngày sinh</label>
+                            <input type="date" asp-for="_dNgaySinh" class="form-control" name="_dNgaySinh"/>
+                            <span asp-validation-for="_dNgaySinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sDiaChi" class="control-label">Địa chỉ</label>
+                            <input asp-for="_sDiaChi" class="form-control" name="_sDiaChi" />
+                            <span asp-validation-for="_sDiaChi" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sGioiTinh" class="control-label">Giới tính</label>
+                            <input asp-for="_sGioiTinh" class="form-control" name="_sGioiTinh" />
+                            <span asp-validation-for="_sGioiTinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sSDT" class="control-label">Điện thoại</label>
+                            <input asp-for="_sSDT" class="form-control" name="_sSDT"/>
+                            <span asp-validation-for="_sSDT" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sEmail" class="control-label">Email</label>
+                            <input asp-for="_sEmail" class="form-control" name="_sEmail"/>
+                            <span asp-validation-for="_sEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_nPhongKham" class="control-label">Mã phòng khám</label>
+                            <input asp-for="_nPhongKham" class="form-control" name="_nPhongKham"/>
+                            <span asp-validation-for="_nPhongKham" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_sKhoa" class="control-label">Mã khoa</label>
+                            <input asp-for="_sKhoa" class="form-control" name="_sKhoa"/>
+                            <span asp-validation-for="_sKhoa" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Lưu" class="btn btn-primary feather icon-save">
+                        <a asp-controller="BenhVien" asp-action="BacSi" class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <img src="~/Images/medical-12_icon-icons.com_73944.png" alt="" style="width:50%; margin-left:130px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

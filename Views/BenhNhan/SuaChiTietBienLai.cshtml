@@ -1,0 +1,84 @@
+﻿
+@model QuanLyVienPhi.Models.ReceiptsDetails;
+@{
+    ViewData["Title"] = "Sửa chi tiết biên lai";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.Session == "KT".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+    }
+}
+
+
+
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("BienLai")">Biên lai</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("SuaChiTietBienLai")">Sửa chi tiết biên lai</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- [ Breadcrumbs & Pagination ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Sửa chi tiết biên lai</h5>
+            </div>
+            <div class="card-body">
+                <nav aria-label="Page navigation example">
+                    <div class="col-sm-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <hr>
+                                @using (Html.BeginForm("SuaChiTietBienLai", "BenhNhan", FormMethod.Post))
+                                {
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group hide" >
+                                        <label asp-for="_nSoBienLai" class="control-label">Số biên lai</label>
+                                        <input asp-for="_nSoBienLai" class="form-control" name="_nSoBienLai" />
+                                        <span asp-validation-for="_nSoBienLai" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group hide" >
+                                        <label asp-for="_nKhoanCP" class="control-label">Số khoản chi phí</label>
+                                        <input asp-for="_nKhoanCP" class="form-control" name="_nKhoanCP" />
+                                        <span asp-validation-for="_nKhoanCP" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="_fSoTien" class="control-label">Số tiền</label>
+                                        <input asp-for="_fSoTien" class="form-control" name="_fSoTien" />
+                                        <span asp-validation-for="_fSoTien" class="text-danger"></span>
+                                    </div>
+                                    <input type="submit" value="Lưu" class="btn btn-primary feather icon-save">
+                                    <a asp-controller="BenhNhan" asp-action="DSBienLai"
+                                       class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- [ Breadcrumbs & Pagination ] end -->
+</div>
+<script>
+    $(document).ready(function () {
+        $(".hide").hide();
+    });
+</script>

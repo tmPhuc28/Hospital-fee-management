@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Thêm phòng khám";
+    if (ViewBag.Session == "Ad".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.Session == "KT".ToLower().Trim())
+    {
+        Layout = "~/Views/Shared/_LayoutKeToan.cshtml";
+    }
+}
+
+
+<!-- [ breadcrumb ] start -->
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+
+                </div>
+                <ul class="breadcrumb">
+                    @*<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>*@
+                    <li class="breadcrumb-item"><a href="@Url.Action("PhongKham")">Phòng khám</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("ThemPhongKham")">Thêm phòng khám</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Thêm phòng khám</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @using (Html.BeginForm("ThemPhongKham", "BenhVien", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label>Tên phòng khám</label>
+                            <input type="text" class="form-control" name="_sTenPK">
+                        </div>
+                        <input type="submit" value="Lưu" class="btn btn-primary feather icon-save">
+                        <a asp-controller="BenhVien" asp-action="PhongKham"
+                           class="btn btn-outline-secondary feather icon-corner-down-right">     Trở về</a>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <img src="~/Images/medical-12_icon-icons.com_73944.png" alt="" style="width:50%; margin-left:130px;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (TempData["mgs"] != null)
+    {
+        <script>
+                    alert(@TempData["mgs"]);
+        </script>
+    }
+}
+
